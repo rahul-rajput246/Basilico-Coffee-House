@@ -1,0 +1,613 @@
+
+@media (min-width: 1921px) {
+    .choose-us {
+        background-size: cover;
+    }
+    .wg-coffee-post > .center,
+    .wg-coffee-post > .left {
+        width: 100%;
+    }
+    .wg-coffee-post > .right {
+        width: 50%;
+    }
+    .right .coffee-post-item .image img, 
+    .left .coffee-post-item .image img {
+        height: unset;
+    }
+    .wg-coffee-time .left img {
+        width: 100%;
+        height: unset;
+    }
+}
+
+@media (max-width: 1440px) {
+    .choose-us.style-1.type-1 .img-left {
+        margin-left: 95px;
+    }
+    .choose-us.style-1.type-2 .img-right {
+        margin-right: 94px;
+    }
+    .wg-wiew-item img  {
+        height: unset !important;
+    }
+    .private-item .content {
+        padding: 40px 20px 40px 20px !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .book-table .wrap {
+        gap: 30px;
+    }
+    .wg-shop-detail .content-inner {
+        padding-left: 0;
+    }
+    .wg-404 .content {
+        padding-top: 50px;
+    }
+    .wg-about .wrap {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .wg-about .content {
+        padding: 30px 30px 0 30px;
+    }
+    .wg-welcom {
+        left: 0;
+    }
+    .choose-us {
+        background-size: cover;
+    }
+    .choose-us .content {
+        margin-top: 89px;
+        margin-right: 15px;
+    }
+    .right .coffee-post-item .image img, 
+    .left .coffee-post-item .image img {
+        height: unset;
+    }
+    .wg-banner-item {
+        padding: 40px;
+    }
+    .wg-banner-coffee .bottom {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .header-2 #site-logo {
+        left: 85px;
+    }
+    .header-2 > .top,
+    .header-2 > .header-inner {
+        padding-left: 150px;
+    }
+    .partners {
+        padding-left:  15px !important; 
+        padding-right:  15px !important; 
+    }
+    .product-item .image {
+        text-align: center;
+    }
+}
+
+@media (max-width: 1200px) {
+    .header-2 > .top .information {
+        gap: 15px;
+    }
+    .wg-banner-coffee .row > div {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .choose-us.style-1 .content {
+        margin-right: 0;
+        margin-bottom: 30px;
+        margin-top: 0;
+    }
+    .choose-us .wrap {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+    .wg-about .wrap {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .wg-about .image ,
+    .wg-about .content {
+        width: 50%;
+    }
+    .private-item .content .title {
+        font-size: 30px;
+        line-height: 45px;
+        margin-bottom: 10px;
+    }
+    .header-inner-wrap {
+        padding-left: 40px;
+        padding-right: 42px;
+    }
+    .main-nav.left {
+        padding-left: 94px;
+    }
+    .main-nav.right {
+        padding-left: 210px;
+    }
+    .choose-us.style-1.type-1 .content {
+        margin-right: 0;
+    }
+    .choose-us.style-1.type-1 .image-2 {
+        left: -95px;
+    }
+    .choose-us.style-1.type-2 .img-right {
+        margin-right: 214px;
+    }
+    .choose-us.style-1.type-2 .content {
+        padding-right: 15px;
+    }
+    .book-table .wrap {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .book-table .wrap > div:first-child {
+        order: 1;
+        width: 47%;
+    }
+    .book-table .wrap > div:last-child {
+        order: 2;
+        width: 47%;
+    }
+    .book-table .wrap > .content {
+        order: 3;
+    }
+}
+
+@media (max-width: 1024px) {
+    .wg-banner-coffee .top img {
+        height: unset;
+    }
+    .header-2 .widget-social {
+        display: none;
+    }
+    .choose-us .image {
+        width: unset;
+    }
+    .private-item {
+        flex-wrap: wrap;
+    }
+    .private-item .right, 
+    .private-item .content {
+        width: 100%;
+    }
+    .header-right {
+        gap: 30px;
+    }
+    .main-nav.left {
+        padding-left: 30px;
+    }
+    .main-nav.right {
+        padding-left: 185px;
+    }
+    .wg-coffee-time {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .wg-coffee-time .right {
+        height: 500px;
+        grid-column: span 2 / 3;
+    }
+    .wg-coffee-time .mapboxgl-canvas {
+        width: 100% !important;
+    }
+    .choose-us.style-1.type-2 .wrap,
+    .choose-us.style-1.type-1 .wrap {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .wg-portfolio .wrap {
+        grid-gap: 15px;
+    }
+    .coffee-post-item .content .name {
+        font-size: 16px;
+        line-height: 20px;
+    }
+}
+
+@media (max-width: 991px) {
+    .tf-mouse,
+    .header-2 .wg-bag,
+    .canvas,
+    .header-right::after,
+    .main-nav {
+        display: none;
+    }
+    .mobile-button {
+        display: block;
+    }
+    .special-menu-item.season {
+        margin-top: 0;
+    }
+    .swiper-button,
+    .swiper-button-next,
+    .swiper-button-prev,
+    .swiper-pagination {
+        display: none !important;
+    }
+    .wg-contact-us .left {
+        padding-right: 0;
+    }
+    .choose-us.style-1.type-2 .content {
+        margin-right: 0;
+        padding-right: 0;
+    }
+    .wg-about .image ,
+    .wg-about .content {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .wg-about .content {
+        margin-left: -100px;
+    }
+    .wg-coffee-post {
+        flex-wrap: wrap;
+    }
+    .wg-coffee-post > div {
+        width: 100%;
+    }
+    .choose-us.style-1 .image {
+        width: unset;
+    }
+    .wg-reservation .item-1,
+    .wg-reservation .item-2 {
+        display: none;
+    }
+    .wg-about .hour-opening {
+        min-width: unset;
+        width: 100%;
+    }
+    .header-2 .header-inner-wrap {
+        justify-content: flex-end;
+        padding-right: 80px;
+    }
+    .header-2.is-fixed #site-logo {
+        position: fixed;
+        top: -100%;
+        left: 56px;
+        z-index: 100;
+    }
+    .header-2.is-fixed.is-small #site-logo {
+        top: 56px;
+        -webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        -ms-transition: all 0.5s ease-in-out;
+        -o-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
+    }
+    .swiper-wrapper {
+        padding-bottom: 0 !important;
+    }
+    .private-event .image {
+        width: unset;
+        height: unset;
+        display: flex;
+        align-items: center;
+        gap: 30px;
+    }
+    .private-event .image img {
+        position: unset !important;
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 820px) {
+    .wg-offer-item {
+        flex-wrap: wrap;
+    }
+    .product-item .image img {
+        margin-left: -240px;
+    }
+    .cart-item {
+        flex-wrap: wrap;
+        row-gap: 0px;
+    }
+    .service-item .content .title {
+        font-size: 20px;
+        line-height: 20px;
+    }
+    .service-item .content > i {
+        font-size: 60px;
+    }
+    .service-item .content p {
+        padding: 0 40px;
+        font-size: 13px;
+        line-height: 20px;
+    }
+    .wg-coffee-time .left img {
+        height: unset;
+    }
+    .wg-coffee-time .center {
+        padding-top: 0;
+    }
+    .wg-coffee-time .center .number-phone ,
+    .wg-coffee-time .center .heading-section {
+        margin-bottom: 10px;
+    }
+    .wg-about .content {
+        margin-left: -200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .wg-about {
+        background: none;
+    }
+    .wg-about .image, .wg-about .content {
+        margin-left: 0;
+        width: 100%;
+    }
+    .wg-about .image img ,
+    .wg-about .image {
+        min-width: unset;
+        width: 100%;
+    }
+    .wg-coffee-time {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .wg-coffee-time .right {
+        grid-column: auto;
+    }
+    .wg-coffee-time .left img {
+        height: unset;
+        width: 100%;
+    }
+    .wg-coffee-time .center {
+        padding-top: 50px;
+        padding-bottom: 100px;
+    }
+    .choose-us.style-1.type-2 .img-right {
+        min-width: unset;
+    }
+    .wg-private > .item-2,
+    .wg-private > .item-1,
+    .wg-testimonial.style-1 > .item-3,
+    .wg-testimonial.style-1 > .item-2,
+    .wg-testimonial.style-1 > .item-1 {
+        display: none;
+    }
+    .wg-banner-coffee .top img {
+        height: 300px;
+    }
+}
+
+@media (max-width: 700px) {
+    br {
+        display: none;
+    }
+    .discovery-menu-item {
+        margin-bottom: 140px;
+    }
+    .wg-reservation form .columns {
+        flex-wrap: wrap;
+    }
+    .wg-reservation form .columns {
+        gap: 0;
+    }
+    .wg-reservation form select,
+    .wg-reservation form input {
+        margin-bottom: 30px !important;
+    }
+    .header-2 > .header-inner {
+        padding:  0;
+        margin-top: 0;
+        background-image: none;
+        background-color: #2d2723;
+    }
+    .wg-banner-coffee .top img {
+        height: 150px;
+    }
+    .choose-us.style-1 .right {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .choose-us .right .box-infor {
+        width: 100%;
+    }
+    .choose-us .right {
+        padding-left: 0;
+    }
+    .choose-us .right .box-infor {
+        position: unset;
+        margin-bottom: 15px;
+    }
+    .private-event .image {
+        flex-wrap: wrap;
+    }
+    .product-item.style-list {
+        flex-wrap: wrap;
+    }
+    .product-item.style-list .image {
+        width: 100% !important;
+    }
+    .side-bar {
+        margin-top: 50px;
+    }
+    .product-item .image img {
+        margin-left: -174px;
+    }
+    .wg-404 .title img {
+        width: 200px;
+    }
+    .wg-404 .title::before {
+        transform: translateX(-175px);
+        top: 0;
+        font-size: 165px;
+    }
+    .wg-404 .title::after {
+        transform: translateX(175px);
+        top: 0;
+        font-size: 165px;
+    }
+    .wg-shop-detail .images .image-top img {
+        margin-left: -60px;
+        min-width: unset;
+    }
+    .wg-shop-detail .images .image-bottom {
+        gap: 15px;
+    }
+    .book-table .wrap > div:first-child ,
+    .book-table .wrap > div:last-child {
+        width: 100%;
+    }
+    .coffee-post-item.style-1 .content {
+        top: 50%;
+    }
+    .wg-portfolio .wrap {
+        grid-template-areas: 
+        "aa aa"
+        "aa aa"
+        "bb cc"
+        "dd dd"
+        "ee ff"
+        "gg gg"
+        ;
+        grid-template-columns: repeat(2,1fr);
+    }
+    .wg-offer-item .image {
+        min-width: unset;
+    }
+    .wg-offer-item .content .title {
+        margin-top: 0 !important;
+    }
+    .choose-us.style-1.type-2 .content {
+        margin-top: 0;
+        padding-top: 0;
+    }
+    .choose-us.style-1.type-2 .image-2 {
+        position: unset;
+        margin-top: 30px;
+    }
+    .choose-us.style-1.type-2 .img-right {
+        margin-right: 0;
+    }
+    .choose-us.style-1.type-1 .content {
+        margin-top: 0;
+        padding-top: 30px;
+        margin-bottom: 0;
+    }
+    .choose-us.style-1.type-1 .img-left {
+        min-width: unset;
+        margin-left: 0;
+    }
+    .choose-us.style-1.type-1 .image-2 {
+        position: relative;
+        bottom: unset;
+        left: unset;
+        margin-top: 15px;
+    }
+    .partners {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .grid-follow-instagram,
+    .grid-contact-item {
+        grid-template-columns: repeat(1,1fr);
+    }
+    .wg-update-wrap > .item-2,
+    .wg-update-wrap > .item-1,
+    .banner-page > .item-1,
+    .banner-page > .item-2,
+    .header-top {
+        display: none;
+    }
+    .wg-information:last-child {
+        width: 100%;
+    }
+    .header #site-logo {
+        width: 82px;
+        height: 82px;
+        padding: 10px;
+        transform: translate(-50%,-50%);
+    }
+    .header #site-logo img {
+        width: 62px;
+        height: 62px;
+        max-width: 62px;
+        max-height: 62px;
+    }
+    .header-2 #site-logo {
+        top: 56px;
+        left: 56px;
+    }
+    .header-right {
+        gap: 15px;
+    }
+    .wg-update-wrap form {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .page-title {
+        padding-top: 200px;
+        padding-bottom: 200px;
+    }
+    .home-2 .page-title {
+        padding-top: 100px !important;
+        padding-bottom: 100px !important;
+    }
+    .page-title .content .title {
+        font-size: 40px;
+        line-height: 50px;
+    }
+    .service-item {
+        margin-bottom: 15px;
+    }
+    .footer-bottom {
+        justify-content: center;
+    }
+    .footer {
+        padding-top: 70px !important;
+    }
+    .logo-footer {
+        text-align: center;
+    }
+    .special-menu.style-1,
+    .wg-reservation,
+    .wg-contact-us,
+    .wg-update,
+    .choose-us.style-1.type-1,
+    .follow-instagram.style-1,
+    .wg-update.type-1,
+    .our-product,
+    .wg-our-team,
+    .wg-private,
+    .customer-testimonial.style-1,
+    .wg-shop,
+    .wg-shop-detail,
+    .our-product.style-slide,
+    .wg-news,
+    .choose-us.style-1,
+    .discovery-menu,
+    .cake-bakery,
+    .wg-menu,
+    .special-menu {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    .private-event,
+    .wg-about {
+        padding-top: 50px;
+        padding-bottom: 100px;
+    }
+    .wg-testimonial.style-1,
+    .follow-instagram,
+    .wg-offer {
+        padding-bottom: 70px;
+    }
+    .wg-testimonial {
+        padding-bottom: 0;
+    }
+    .banner-page {
+        padding-top: 200px !important;
+    }
+    .book-table {
+        background-image: none;
+        background-color: #2d2723;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+}
