@@ -10,11 +10,29 @@
     <meta charset="utf-8">
     <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
     <title>Book a Table & Private Reservations | Basilico Coffee House</title>
+    <!-- SEO & Metadata -->
+    <meta name="description" content="Reserve a table online at Basilico Coffee House in Connaught Place, New Delhi. Perfect for intimate coffee dates, meetings, and group gatherings.">
+    <link rel="canonical" href="https://basilicocoffee.com/reservation.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://basilicocoffee.com/reservation.html">
+    <meta property="og:title" content="Book a Table & Private Reservations | Basilico Coffee House">
+    <meta property="og:description" content="Reserve a table online at Basilico Coffee House in Connaught Place, New Delhi. Perfect for intimate coffee dates, meetings, and group gatherings.">
+    <meta property="og:image" content="https://basilicocoffee.com/assets/images/logo/logo.png">
+    <meta property="og:site_name" content="Basilico Coffee House">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://basilicocoffee.com/reservation.html">
+    <meta name="twitter:title" content="Book a Table & Private Reservations | Basilico Coffee House">
+    <meta name="twitter:description" content="Reserve a table online at Basilico Coffee House in Connaught Place, New Delhi. Perfect for intimate coffee dates, meetings, and group gatherings.">
+    <meta name="twitter:image" content="https://basilicocoffee.com/assets/images/logo/logo.png">
 
     <meta name="author" content="Basilico Coffee House">
 
     <!-- Mobile Specific Metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Theme Style -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
@@ -190,7 +208,7 @@
                                 <div class="bag-box">
                                     <div class="cart-item">
                                         <div class="image style-1">
-                                            <img src="assets/images/box-item/avt-product-1.png" alt="">
+                                            <img src="assets/images/box-item/avt-product-1.png" alt="Instant Coffee pack">
                                         </div>
                                         <div class="content">
                                             <div class="price">$20.00</div>
@@ -199,7 +217,7 @@
                                     </div>
                                     <div class="cart-item">
                                         <div class="image">
-                                            <img src="assets/images/box-item/avt-product-2.png" alt="">
+                                            <img src="assets/images/box-item/avt-product-2.png" alt="Milk Ice Coffee blend">
                                         </div>
                                         <div class="content">
                                             <div class="price">$20.00</div>
@@ -208,7 +226,7 @@
                                     </div>
                                     <div class="cart-item last">
                                         <div class="image">
-                                            <img src="assets/images/box-item/avt-product-3.png" alt="">
+                                            <img src="assets/images/box-item/avt-product-3.png" alt="Sugar Black Coffee pouch">
                                         </div>
                                         <div class="content">
                                             <div class="price"><span>$41.00</span> $31.00</div>
@@ -276,13 +294,13 @@
 
             <!-- banner-page -->
             <div class="banner-page reservation-page">
-                <img class="item-1" src="assets/images/bg-section/cup.png" alt="">
-                <img class="item-2" src="assets/images/bg-section/cup-1.png" alt="">
+                <img class="item-1" src="assets/images/bg-section/cup.png" alt="Coffee Cup Accent">
+                <img class="item-2" src="assets/images/bg-section/cup-1.png" alt="Coffee Cup Accent">
                 <div class="themesflat-container">
                     <div class="row">
                         <div class="col-12">
                             <div class="text">- Online Reservation -</div>
-                            <div class="heading">book a table</div>
+                            <h1 class="heading">book a table</h1>
                             <ul class="breadcrumbs">
                                 <li class="item">
                                     <a href="index.html">Home</a>
@@ -300,7 +318,7 @@
            <!-- wg-reservation -->
            <div class="wg-reservation">
                 <img class="item-1" src="assets/images/item-background/snacks-1.png" alt="">
-                <img class="item-2" src="assets/images/item-background/cup.png" alt="">
+                <img class="item-2" src="assets/images/item-background/cup.png" alt="Decorative Coffee Cup">
                 <div class="themesflat-container w700">
                     <div class="row">
                         <div class="col-12">
@@ -313,22 +331,33 @@
                                             <input type="text" placeholder="Name*" class="style-2" name="name" tabindex="2" value="" aria-required="true" required="">
                                         </fieldset>
                                         <fieldset class="number">
-                                            <input type="text" placeholder="Phone*" class="style-2" name="text" tabindex="2" value="" aria-required="true" required="">
+                                            <input type="tel" placeholder="Phone*" class="style-2" name="phone" tabindex="2" value="" aria-required="true" required="">
                                         </fieldset>
                                     </div>
                                     <div class="columns">
                                         <fieldset class="select t1 event-time">
-                                            <select class="style-1">
-                                                <option value="Subject" selected>Arrival time</option>
-                                                <option value="Subject">6:00 AM</option>
-                                                <option value="Subject">6:00 PM</option>
+                                            <select class="style-1" name="time" aria-label="Select arrival time">
+                                                <option value="" disabled selected>Arrival time</option>
+                                                <option value="8:00 AM">8:00 AM</option>
+                                                <option value="9:30 AM">9:30 AM</option>
+                                                <option value="11:00 AM">11:00 AM</option>
+                                                <option value="12:30 PM">12:30 PM</option>
+                                                <option value="2:00 PM">2:00 PM</option>
+                                                <option value="3:30 PM">3:30 PM</option>
+                                                <option value="5:00 PM">5:00 PM</option>
+                                                <option value="6:30 PM">6:30 PM</option>
+                                                <option value="8:00 PM">8:00 PM</option>
                                             </select>
                                         </fieldset>
                                         <fieldset class="select t1 event-number">
-                                            <select class="style-1">
-                                                <option value="Subject" selected>People</option>
-                                                <option value="Subject">5</option>
-                                                <option value="Subject">10</option>
+                                            <select class="style-1" name="guests" aria-label="Select number of guests">
+                                                <option value="" disabled selected>Party size</option>
+                                                <option value="1 Guest">1 Guest</option>
+                                                <option value="2 Guests">2 Guests</option>
+                                                <option value="3-4 Guests">3-4 Guests</option>
+                                                <option value="5-6 Guests">5-6 Guests</option>
+                                                <option value="7-10 Guests">7-10 Guests</option>
+                                                <option value="10+ Guests">10+ Guests (Group)</option>
                                             </select>
                                         </fieldset>
                                         <fieldset class="date">
@@ -349,7 +378,7 @@
             <!-- wg-coffee-time --> 
             <div class="wg-coffee-time">
                 <div class="left">
-                    <img src="assets/images/box-item/coffee-time.jpg" alt="">
+                    <img src="assets/images/box-item/coffee-time.jpg" alt="Coffee Time at Basilico Counter">
                 </div>
                 <div class="center">
                     <div class="heading-section text-center mb-35">
@@ -372,8 +401,8 @@
 
             <!-- footer -->
             <footer id="footer" class="footer">
-                <img class="item-1" src="assets/images/item-background/footer-1.png" alt="">
-                <img class="item-2" src="assets/images/item-background/footer-2.png" alt="">
+                <img class="item-1" src="assets/images/item-background/footer-1.png" alt="" aria-hidden="true">
+                <img class="item-2" src="assets/images/item-background/footer-2.png" alt="" aria-hidden="true">
                 <div class="themesflat-container">
                     <div class="row">
                         <div class="col-md-6 col-lg-3 logo">
@@ -407,19 +436,19 @@
                                 <li>
                                     <div class="text">
                                         <span>Monday - Friday : </span>
-                                        9:00- 22:00
+                                        8:00 - 21:00
                                     </div>
                                 </li>
                                 <li>
                                     <div class="text">
                                         <span>Saturday: </span>
-                                        10:00 - 23:00
+                                        9:00 - 22:00
                                     </div>
                                 </li>
                                 <li>
                                     <div class="text">
                                         <span>Sunday: </span>
-                                        5:00 - 23:00
+                                        9:00 - 22:00
                                     </div>
                                 </li>
                                 <li>

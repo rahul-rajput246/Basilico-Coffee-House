@@ -91,6 +91,21 @@
                 $(this).addClass("active");
               }
           });
+          // Keyboard accessibility for interactive toggles
+          $('.canvas-button, .button-close, .mobile-button, .mobile-nav-close').attr({
+            'role': 'button',
+            'tabindex': '0'
+          }).on('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              $(this).trigger('click');
+            }
+          });
+
+          // Prevent jump to top for empty hashes
+          $(document).on('click', 'a[href="#"]', function(e) {
+            e.preventDefault();
+          });
             
         }
     }
@@ -374,6 +389,398 @@
       }, 1000);
     };
 
+    /* -------------------------------------------------------------
+     * Basilico Coffee House - Interactive Experience & Demo Handlers
+     * ----------------------------------------------------------- */
+
+    // Toast Notification System
+    const showToast = function (message, icon) {
+      icon = icon || '✓';
+      var $container = $('.basilico-toast-container');
+      if (!$container.length) {
+        $container = $('<div class="basilico-toast-container"></div>').appendTo('body');
+      }
+
+      var $toast = $(
+        '<div class="basilico-toast">' +
+          '<span class="basilico-toast-icon">' + icon + '</span>' +
+          '<span>' + message + '</span>' +
+        '</div>'
+      ).appendTo($container);
+
+      setTimeout(function () {
+        $toast.addClass('hiding');
+        setTimeout(function () {
+          $toast.remove();
+        }, 300);
+      }, 3500);
+    };
+
+    // Modal System
+    const showModal = function (options) {
+      $('.basilico-modal-overlay').remove();
+
+      var detailsHtml = '';
+      if (options.details && options.details.length) {
+        detailsHtml = '<ul class="basilico-modal-details">';
+        options.details.forEach(function (d) {
+          detailsHtml += '<li><span>' + d.label + ':</span> <strong>' + d.value + '</strong></li>';
+        });
+        detailsHtml += '</ul>';
+      }
+
+      var badgeHtml = options.badge ? '<span class="basilico-modal-badge">' + options.badge + '</span>' : '';
+      var secondaryBtnHtml = options.secondaryBtnText ? '<button class="basilico-btn basilico-btn-secondary" id="basilico-modal-sec">' + options.secondaryBtnText + '</button>' : '';
+      var primaryBtnText = options.primaryBtnText || 'Close';
+
+      var modalHtml = $(
+        '<div class="basilico-modal-overlay" role="dialog" aria-modal="true">' +
+          '<div class="basilico-modal">' +
+            '<button class="basilico-modal-close" aria-label="Close dialog">&times;</button>' +
+            badgeHtml +
+            '<h3>' + (options.title || 'Notification') + '</h3>' +
+            '<div class="basilico-modal-body">' +
+              (options.content || '') +
+              detailsHtml +
+            '</div>' +
+            '<div class="basilico-modal-actions">' +
+              secondaryBtnHtml +
+              '<button class="basilico-btn basilico-btn-primary" id="basilico-modal-pri">' + primaryBtnText + '</button>' +
+            '</div>' +
+          '</div>' +
+        '</div>'
+      ).appendTo('body');
+
+      var closeModal = function () {
+        modalHtml.fadeOut(200, function () { $(this).remove(); });
+      };
+
+      modalHtml.find('.basilico-modal-close, #basilico-modal-pri').on('click', function (e) {
+        e.preventDefault();
+        closeModal();
+        if (typeof options.onPrimary === 'function') {
+          options.onPrimary();
+        }
+      });
+
+      if (options.secondaryBtnText) {
+        modalHtml.find('#basilico-modal-sec').on('click', function (e) {
+          e.preventDefault();
+          if (typeof options.onSecondary === 'function') {
+            options.onSecondary();
+          }
+          closeModal();
+        });
+      }
+
+      modalHtml.on('click', function (e) {
+        if ($(e.target).hasClass('basilico-modal-overlay')) {
+          closeModal();
+        }
+      });
+
+      $(document).on('keydown.basilicoModal', function (e) {
+        if (e.key === 'Escape') {
+          closeModal();
+          $(document).off('keydown.basilicoModal');
+        }
+      });
+    };
+
+    // Client-Side Cart System
+    var initCart = function () {
+      var CART_KEY = 'basilico_cart_v1';
+      var getCart = function () {
+        try {
+          var data = localStorage.getItem(CART_KEY);
+          if (data) return JSON.parse(data);
+        } catch (e) {}
+        // Default initial items
+        return [
+          { id: 'prod-1', name: 'Instant Coffee', price: 20.00, qty: 1, image: 'assets/images/box-item/avt-product-1.png' },
+          { id: 'prod-2', name: 'Milk Ice Coffee', price: 14.00, qty: 1, image: 'assets/images/box-item/avt-product-2.png' },
+          { id: 'prod-3', name: 'Sugar Black Coffee', price: 31.00, qty: 1, image: 'assets/images/box-item/avt-product-3.png' }
+        ];
+      };
+
+      var saveCart = function (cart) {
+        try {
+          localStorage.setItem(CART_KEY, JSON.stringify(cart));
+        } catch (e) {}
+      };
+
+      var renderCart = function () {
+        var cart = getCart();
+        var totalQty = cart.reduce(function (sum, item) { return sum + item.qty; }, 0);
+        var subtotal = cart.reduce(function (sum, item) { return sum + (item.price * item.qty); }, 0);
+
+        // Update badge
+        $('.wg-bag .number').text(totalQty);
+
+        var $bagBox = $('.wg-bag .bag-box');
+        if (!$bagBox.length) return;
+
+        $bagBox.empty();
+
+        if (cart.length === 0) {
+          $bagBox.html('<div class="cart-empty-message">Your shopping bag is empty.<br><a href="shop.html" style="color: #C3A27C; text-decoration: underline; margin-top: 8px; display: inline-block;">Browse Coffee & Gear</a></div>');
+          return;
+        }
+
+        cart.forEach(function (item, index) {
+          var isLast = (index === cart.length - 1) ? 'last' : '';
+          var itemHtml =
+            '<div class="cart-item ' + isLast + '" data-id="' + item.id + '">' +
+              '<div class="image">' +
+                '<img src="' + item.image + '" alt="' + item.name + '">' +
+              '</div>' +
+              '<div class="content">' +
+                '<div class="price">$' + item.price.toFixed(2) + ' <span style="font-size: 11px; color: #888;">&times; ' + item.qty + '</span></div>' +
+                '<div class="name"><a href="shop-single.html">' + item.name + '</a></div>' +
+              '</div>' +
+              '<button class="cart-item-remove" data-id="' + item.id + '" title="Remove item" aria-label="Remove item">&times;</button>' +
+            '</div>';
+          $bagBox.append(itemHtml);
+        });
+
+        var footerHtml =
+          '<div class="cart-drawer-footer">' +
+            '<div class="cart-subtotal-row">' +
+              '<span>Subtotal:</span>' +
+              '<span>$' + subtotal.toFixed(2) + '</span>' +
+            '</div>' +
+            '<button class="cart-drawer-btn" id="btn-checkout-demo">Checkout (Demo)</button>' +
+          '</div>';
+        $bagBox.append(footerHtml);
+      };
+
+      // Remove item event
+      $(document).on('click', '.cart-item-remove', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var id = $(this).data('id');
+        var cart = getCart().filter(function (i) { return i.id !== id; });
+        saveCart(cart);
+        renderCart();
+        showToast('Item removed from bag');
+      });
+
+      // Checkout demo button
+      $(document).on('click', '#btn-checkout-demo', function (e) {
+        e.preventDefault();
+        var cart = getCart();
+        var subtotal = cart.reduce(function (sum, item) { return sum + (item.price * item.qty); }, 0);
+        showModal({
+          badge: 'Portfolio Showcase',
+          title: 'Checkout Preview',
+          content: '<p>Thank you for exploring the <strong>Basilico Coffee House</strong> e-commerce experience!</p>' +
+                   '<p>In a full production deployment, this button connects to a payment provider (Stripe, Razorpay, Square) with real-time inventory management and automated order tracking.</p>',
+          details: [
+            { label: 'Total Items', value: cart.reduce(function (s, i) { return s + i.qty; }, 0) + ' items' },
+            { label: 'Order Total', value: '$' + subtotal.toFixed(2) }
+          ],
+          primaryBtnText: 'Keep Shopping',
+          secondaryBtnText: 'Clear Cart',
+          onSecondary: function () {
+            saveCart([]);
+            renderCart();
+            showToast('Shopping bag cleared');
+          }
+        });
+      });
+
+      // Add to Cart from shop grid
+      $(document).on('click', '.product-item .add a', function (e) {
+        e.preventDefault();
+        var $product = $(this).closest('.product-item');
+        var name = $product.find('.name a').text().trim() || 'Signature Coffee';
+        var priceText = $product.find('.price').clone().children().remove().end().text().replace('$', '').trim();
+        var price = parseFloat(priceText) || 20.00;
+        var image = $product.find('.image img').attr('src') || 'assets/images/box-item/avt-product-1.png';
+        var id = 'prod-' + name.toLowerCase().replace(/[^a-z0-9]/g, '-');
+
+        var cart = getCart();
+        var existing = cart.find(function (i) { return i.id === id; });
+        if (existing) {
+          existing.qty += 1;
+        } else {
+          cart.push({ id: id, name: name, price: price, qty: 1, image: image });
+        }
+        saveCart(cart);
+        renderCart();
+        showToast('Added to bag: ' + name);
+      });
+
+      // Add to cart from shop single
+      $(document).on('click', '.wg-quantity .button-style-1', function (e) {
+        e.preventDefault();
+        var qty = parseInt($('.wg-quantity input[name="number"]').val()) || 1;
+        var name = $('.content-inner .name a').text().trim() || 'Instant Coffee';
+        var priceText = $('.content-inner .price').text().replace('$', '').trim();
+        var price = parseFloat(priceText) || 20.00;
+        var image = $('.wg-shop-detail .image img').attr('src') || 'assets/images/box-item/avt-product-1.png';
+        var id = 'prod-' + name.toLowerCase().replace(/[^a-z0-9]/g, '-');
+
+        var cart = getCart();
+        var existing = cart.find(function (i) { return i.id === id; });
+        if (existing) {
+          existing.qty += qty;
+        } else {
+          cart.push({ id: id, name: name, price: price, qty: qty, image: image });
+        }
+        saveCart(cart);
+        renderCart();
+        showToast('Added ' + qty + ' &times; ' + name + ' to bag');
+      });
+
+      // Wishlist toggle
+      $(document).on('click', '.add-wishlist a, .product-item .like a', function (e) {
+        e.preventDefault();
+        $(this).toggleClass('active');
+        showToast('Saved to your Favorites & Wishlist', '♥');
+      });
+
+      renderCart();
+    };
+
+    // Reservation & Booking Form Handler
+    var initReservations = function () {
+      // Set date inputs to tomorrow by default if in the past
+      var today = new Date();
+      var tomorrow = new Date(today);
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      var minDateStr = today.toISOString().split('T')[0];
+      var tomorrowStr = tomorrow.toISOString().split('T')[0];
+
+      $('input[type="date"]').each(function () {
+        $(this).attr('min', minDateStr);
+        var currentVal = $(this).val();
+        if (!currentVal || currentVal < minDateStr) {
+          $(this).val(tomorrowStr);
+        }
+      });
+
+      // Intercept reservation forms
+      $('.wg-reservation .comment-form, .reservation-page-form').on('submit', function (e) {
+        e.preventDefault();
+        var $form = $(this);
+        var name = $form.find('input[name="name"]').val() || 'Guest';
+        var phone = $form.find('input[type="text"]').not('[name="name"]').val() || '+91 98765 43210';
+        var time = $form.find('.event-time select option:selected').text();
+        if (time === 'Arrival time') time = '7:00 PM';
+        var guests = $form.find('.event-number select option:selected').text();
+        if (guests === 'People') guests = '2 Guests';
+        var date = $form.find('input[type="date"]').val() || tomorrowStr;
+
+        showModal({
+          badge: 'Portfolio Demonstration',
+          title: 'Table Reservation Confirmed',
+          content: '<p>Thank you, <strong>' + name + '</strong>! Your table reservation request has been received.</p>' +
+                   '<p>In a production system, this sends an immediate SMS/Email confirmation to the guest, logs the booking in the cafe host system, and manages table seating.</p>',
+          details: [
+            { label: 'Guest Name', value: name },
+            { label: 'Contact Phone', value: phone },
+            { label: 'Reserved Date', value: date },
+            { label: 'Time Slot', value: time },
+            { label: 'Party Size', value: guests }
+          ],
+          primaryBtnText: 'Awesome!'
+        });
+
+        $form[0].reset();
+        $form.find('input[type="date"]').val(tomorrowStr);
+      });
+    };
+
+    // Contact Form Handler
+    var initContact = function () {
+      $('.wg-contact-us .comment-form').on('submit', function (e) {
+        e.preventDefault();
+        var $form = $(this);
+        var name = $form.find('input[name="name"]').val() || 'Guest';
+        var email = $form.find('input[type="email"]').val() || 'guest@example.com';
+
+        showModal({
+          badge: 'Portfolio Demonstration',
+          title: 'Message Sent Successfully',
+          content: '<p>Thank you, <strong>' + name + '</strong>! Your message has been safely received.</p>' +
+                   '<p>In production, this submission dispatches directly to <strong>hello@basilicocoffee.com</strong> via a mail server or webhook integration.</p>',
+          details: [
+            { label: 'Sender', value: name },
+            { label: 'Reply Email', value: email },
+            { label: 'Status', value: 'Delivered (Demo Mode)' }
+          ],
+          primaryBtnText: 'Close'
+        });
+
+        $form[0].reset();
+      });
+    };
+
+    // Newsletter Subscriptions
+    var initNewsletter = function () {
+      $('#footer .comment-form, .wg-welcom .comment-form').on('submit', function (e) {
+        e.preventDefault();
+        var $form = $(this);
+        var email = $form.find('input[type="email"]').val();
+        if (email) {
+          showToast('Thank you for subscribing with ' + email + '!');
+          $form[0].reset();
+        }
+      });
+    };
+
+    // Search Form Handler
+    var initSearch = function () {
+      $('.search-form').on('submit', function (e) {
+        e.preventDefault();
+        var query = $(this).find('input[type="search"]').val();
+        if (query && query.trim().length > 0) {
+          window.location.href = 'shop.html?search=' + encodeURIComponent(query.trim());
+        }
+      });
+    };
+
+    // Shop Page Product Filter Handler
+    var initShopFilters = function () {
+      if (!$('.wg-shop').length) return;
+
+      var urlParams = new URLSearchParams(window.location.search);
+      var searchParam = urlParams.get('search');
+
+      var filterProducts = function (searchTerm, category) {
+        var $items = $('.wg-shop-content .product-item');
+        var visibleCount = 0;
+
+        $items.each(function () {
+          var text = $(this).text().toLowerCase();
+          var matchSearch = !searchTerm || text.indexOf(searchTerm.toLowerCase()) !== -1;
+          var matchCat = !category || category === 'all' || category === 'subject' || text.indexOf(category.toLowerCase()) !== -1;
+
+          if (matchSearch && matchCat) {
+            $(this).closest('[class*="col-"]').show();
+            visibleCount++;
+          } else {
+            $(this).closest('[class*="col-"]').hide();
+          }
+        });
+
+        var countText = 'Showing 1–' + visibleCount + ' of 16 results';
+        if (searchTerm) {
+          countText = 'Showing ' + visibleCount + ' results for "' + searchTerm + '" <a href="shop.html" style="color:#C3A27C; margin-left: 10px; text-decoration: underline;">(Clear Filter)</a>';
+        }
+        $('.wg-shop .top > p').html(countText);
+      };
+
+      if (searchParam) {
+        filterProducts(searchParam, null);
+      }
+
+      $('.wg-shop .option select').on('change', function () {
+        var selected = $(this).val().toLowerCase();
+        filterProducts(searchParam, selected);
+      });
+    };
 
     // Dom Ready
     $(function () {
@@ -390,8 +797,16 @@
       gotop();
       cursor();
       retinaLogos();
-      // blog();
       preloader();
+
+      // Interactive Features
+      initCart();
+      initReservations();
+      initContact();
+      initNewsletter();
+      initSearch();
+      initShopFilters();
     });
 
 })(jQuery);
+
